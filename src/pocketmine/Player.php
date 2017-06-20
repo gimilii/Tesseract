@@ -4078,4 +4078,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function isLoaderActive(){
 		return $this->isConnected();
 	}
+	
+	public function getItemInHand(){
+		return $this->inventory->getItemInHand();
+	}
 }
