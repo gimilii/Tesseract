@@ -32,10 +32,6 @@ use pocketmine\Player;
 class Squid extends WaterAnimal implements Ageable{
 	const NETWORK_ID = 17;
 
-	public $width = 0.95;
-	public $length = 0.95;
-	public $height = 0.95;
-
 	/** @var Vector3 */
 	public $swimDirection = null;
 	public $swimSpeed = 0.1;
@@ -43,6 +39,9 @@ class Squid extends WaterAnimal implements Ageable{
 	private $switchDirectionTicker = 0;
 
 	public function initEntity(){
+		$this->width = 0.95;
+		$this->length = 0.95;
+		$this->height = 0.95;
 		$this->setMaxHealth(10);
 		parent::initEntity();
 	}
@@ -143,25 +142,6 @@ class Squid extends WaterAnimal implements Ageable{
 		$this->timings->stopTiming();
 
 		return $hasUpdate or !$this->onGround or abs($this->motionX) > 0.00001 or abs($this->motionY) > 0.00001 or abs($this->motionZ) > 0.00001;
-	}
-
-
-	public function spawnTo(Player $player){
-		$pk = new AddEntityPacket();
-		$pk->entityRuntimeId = $this->getId();
-		$pk->type = Squid::NETWORK_ID;
-		$pk->x = $this->x;
-		$pk->y = $this->y;
-		$pk->z = $this->z;
-		$pk->speedX = $this->motionX;
-		$pk->speedY = $this->motionY;
-		$pk->speedZ = $this->motionZ;
-		$pk->yaw = $this->yaw;
-		$pk->pitch = $this->pitch;
-		$pk->metadata = $this->dataProperties;
-		$player->dataPacket($pk);
-
-		parent::spawnTo($player);
 	}
 
 	public function getDrops(){

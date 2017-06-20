@@ -674,7 +674,11 @@ class Binary{
 	 * @param int $v
 	 * @return string
 	 */
-	public static function writeVarLong_64(int $v) : string{
+	//public static function writeVarLong_64(int $v) : string{
+	public static function writeVarLong_64($v) : string{
+		if ($v === null) {
+			var_dump(debug_backtrace());
+		}
 		return self::writeUnsignedVarLong_64(($v << 1) ^ ($v >> 63));
 	}
 
@@ -725,7 +729,12 @@ class Binary{
 	 *
 	 * @return string
 	 */
-	public static function writeUnsignedVarLong_64(int $value) : string{
+	public static function writeUnsignedVarLong_64($value) : string{
+		if ($value === null) {
+			print "Value is null in writeUnsignedVarLong_64";
+			var_dump(debug_backtrace());
+			exit();
+		}
 		$buf = "";
 		for($i = 0; $i < 10; ++$i){
 			if(($value >> 7) !== 0){
