@@ -21,10 +21,6 @@
 
 namespace pocketmine\entity;
 
+class InstantEffect extends Effect{
 
-abstract class Animal extends Mob implements Ageable{
-
-	public function isBaby(){
-		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_BABY);
-	}
 }

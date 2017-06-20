@@ -62,6 +62,7 @@ class Explosion{
 	 * @return bool
 	 */
 	public function explodeA(){
+		print "In explodeA \n";
 		if($this->size < 0.1){
 			return false;
 		}
@@ -94,8 +95,10 @@ class Explosion{
 
 							if($block->getId() !== 0){
 								$blastForce -= ($block->getResistance() / 5 + 0.3) * $this->stepLen;
+								print "blastForce is: $blastForce \n";
 								if($blastForce > 0){
 									if(!isset($this->affectedBlocks[$index = Level::blockHash($block->x, $block->y, $block->z)])){
+										print "adding to affected blocks at $index \n";
 										$this->affectedBlocks[$index] = $block;
 									}
 								}

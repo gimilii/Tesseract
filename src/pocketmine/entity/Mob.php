@@ -21,20 +21,46 @@
 
 namespace pocketmine\entity;
 
-class Zombie extends Monster{
-	
-	const NETWORK_ID = 32;
+use pocketmine\Player;
 
-	public function getName() : string{
-		return "Zombie";
-	}
+abstract class Mob extends Creature {
+	
+	private $moveDirection = null;
+	private $moveSpeed = 0.2;
+	private $aiControl = true;
+	
 	
 	public function initEntity(){
-		$this->setMaxHealth(20);
+		$this->height = 1.8;
+		$this->width = 0.6;
+		$this->length = 0.6;
+		$this->setMaxHealth(6);
 		parent::initEntity();
 	}
 	
-	public function canCatchOnFire() {
-		return true;
+	public function setAIControl($control) {
+		$this->aiControl = $control;
 	}
+	
+	public function onUpdate($currentTick){
+		if($this->closed !== false){
+			return false;
+		}
+		// 		if ($this->aiControl === true) {
+		return parent::onUpdate($currentTick);
+		// 		}
+	
+	}
+	
+	public function canCatchOnFire() {
+		return false;
+	}
+	
+	public function getDistanceToMovePerSecond() {
+		return 2;
+	}
+	
+	public function spawnTo(Player $player){
+		parent::addEntityPacketAndSpawnTo($player, $this::NETWORK_ID);
+	}	
 }

@@ -21,20 +21,7 @@
 
 namespace pocketmine\entity;
 
-class Zombie extends Monster{
-	
-	const NETWORK_ID = 32;
 
-	public function getName() : string{
-		return "Zombie";
-	}
-	
-	public function initEntity(){
-		$this->setMaxHealth(20);
-		parent::initEntity();
-	}
-	
-	public function canCatchOnFire() {
-		return true;
-	}
+abstract class Hanging extends Entity implements Attachable{
+
 }

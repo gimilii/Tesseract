@@ -21,20 +21,11 @@
 
 namespace pocketmine\entity;
 
-class Zombie extends Monster{
-	
-	const NETWORK_ID = 32;
 
+class Silverfish extends Monster{
+	const NETWORK_ID = 39;
+	
 	public function getName() : string{
-		return "Zombie";
-	}
-	
-	public function initEntity(){
-		$this->setMaxHealth(20);
-		parent::initEntity();
-	}
-	
-	public function canCatchOnFire() {
-		return true;
+		return "Silverfish";
 	}
 }
