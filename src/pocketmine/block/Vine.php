@@ -146,18 +146,22 @@ class Vine extends Transparent{
 	}
 
 	public function onUpdate($type){
-		if($type === Level::BLOCK_UPDATE_NORMAL){
-			$sides = [
-				2 => 4,
-				3 => 1,
-				4 => 2,
-				5 => 8
-			];
-			if(!$this->getSide($sides[$this->meta])->isSolid()){ //Replace with common break method
-				$this->level->useBreakOn($this);
-				return Level::BLOCK_UPDATE_NORMAL;
-			}
-		}
+		// 2017 - June 20th, Error is occuring indicating that $sides[0] is not 
+		// a valid index, which is true.  At the moment I am not sure what this code
+		// is supposed to do, and saw in the past that it just returned false, so
+		// going back to that for now.
+// 		if($type === Level::BLOCK_UPDATE_NORMAL){
+// 			$sides = [
+// 				2 => 4,
+// 				3 => 1,
+// 				4 => 2,
+// 				5 => 8
+// 			];
+// 			if(!$this->getSide($sides[$this->meta])->isSolid()){ //Replace with common break method
+// 				$this->level->useBreakOn($this);
+// 				return Level::BLOCK_UPDATE_NORMAL;
+// 			}
+// 		}
 
 		return false;
 	}
